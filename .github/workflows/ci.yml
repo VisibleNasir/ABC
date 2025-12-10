@@ -45,15 +45,14 @@ jobs:
 
       - name: Link Vercel Project
         working-directory: ./frontend
-        run: npx vercel link --yes --token $VERCEL_TOKEN
+        run: npx vercel link --yes --token $VERCEL_TOKEN --path .
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-
       - name: Deploy to Vercel
         working-directory: ./frontend
-        run: npx vercel --prod --yes --token $VERCEL_TOKEN
+        run: npx vercel --prod --yes --token $VERCEL_TOKEN --cwd .
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
