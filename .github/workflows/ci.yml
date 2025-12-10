@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Tests
         working-directory: ./frontend
-        run: npm test --if-present
+        run: npm test
 
       - name: Build App
         working-directory: ./frontend
@@ -44,10 +44,17 @@ jobs:
         working-directory: ./frontend
         run: npm install
 
-      - name: Deploy to Vercel
+      - name: Link Vercel Project
         working-directory: ./frontend
-        run: npx vercel --prod --yes
+        run: |
+          npx vercel link --yes --token $VERCEL_TOKEN --project $VERCEL_PROJECT_ID --org $VERCEL_ORG_ID
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Deploy to Vercel
+        working-directory: ./frontend
+        run: npx vercel deploy --prod --yes --token $VERCEL_TOKEN
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
