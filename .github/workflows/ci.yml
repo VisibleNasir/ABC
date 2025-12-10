@@ -30,7 +30,6 @@ jobs:
       - name: Build App
         working-directory: ./frontend
         run: npm run build
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -43,17 +42,15 @@ jobs:
         working-directory: ./frontend
         run: npm install
 
-      - name: Link Vercel Project
-        working-directory: ./frontend
-        run: npx vercel link --yes --token $VERCEL_TOKEN --path .
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       - name: Deploy to Vercel
         working-directory: ./frontend
-        run: npx vercel --prod --yes --token $VERCEL_TOKEN --cwd .
+        run: |
+          npx vercel --prod --yes \
+            --token $VERCEL_TOKEN \
+            --project $VERCEL_PROJECT_ID \
+            --org $VERCEL_ORG_ID
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+
