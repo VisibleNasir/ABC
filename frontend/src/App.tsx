@@ -6,7 +6,7 @@ function App() {
 
   return (
     <div>
-      Hello, World!
+      Something works!
     </div>
   )
 }
