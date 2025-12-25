@@ -1,45 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
-import './App.css';
-import { decrement, increment, incrementByAmount, reset } from './features/counter/counterSlice';
-import { useState } from 'react';
 
-interface Rootstate{
-  counter:{
-    value:number
-  }
-}
+import {  Route, Routes } from 'react-router-dom';
+import './App.css';
+import Counter from './components/Counter';
+import Home from './pages/Home';
+import Umpcomingex from './pages/Umpcomingex';
 
 function App() {
-  const [amount , setAmount] = useState<number >(0);
-  const count  = useSelector((state: Rootstate)=> state.counter.value)
-  const dispatch = useDispatch();
-
-  function handleDecrement(){
-    dispatch(decrement())
-  }
-
-  function handleReset(){
-    dispatch(reset())
-  }
-
-  function handleAmountIncrement(){
-    dispatch(incrementByAmount(amount))
-  }
-  return <div>
-    <h1>Counter Value: {count}</h1>
-    <button onClick={()=> dispatch(increment())}>Inc + </button>
-    <button onClick={handleDecrement}>Dec - </button>    
-
-    <button onClick={handleReset}>Reset</button> 
-
-
-    <div className=' flex flex-col w-2xl h-xl'>
-      <input className='border outline-none' type="number" placeholder='enter a amount'  onChange={(e) => setAmount(Number(e.target.value))}/>
-      <button className='rounded p-2 bg-zinc-500' onClick={handleAmountIncrement}>Inc by amount</button>
-    </div>
-
+  
+  return (
     
-  </div>
+    <Routes>
+      <Route path='/counter' element={<Counter />} />
+      <Route path='/' element={<Home/>} />
+      <Route path='/ex' element={<Umpcomingex/>} />
+    </Routes>
+  )
 }
 
 export default App;

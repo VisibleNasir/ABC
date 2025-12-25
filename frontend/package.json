@@ -23,11 +23,15 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\""
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.11.1",
+    "@reduxjs/toolkit": "^2.11.2",
     "@tailwindcss/vite": "^4.1.17",
+    "@testing-library/dom": "^10.4.1",
+    "lucide-react": "^0.344.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
+    "react-router-dom": "^7.11.0",
+    "react-ui": "^1.0.0-beta.32",
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
